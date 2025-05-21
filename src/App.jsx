@@ -1,35 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route, useNavigate } from "react-router-dom";
 import './App.css'
+import Header from "../src/components/Header.jsx";
+import Home from "../src/components/Home.jsx";
+import Navbar from "../src/components/Navbar.jsx";
+import ArticleList from "../src/components/ArticleList.jsx";
+import UserList from "../src/components/UserList.jsx";
+import TopicList from "../src/components/TopicList.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const pageTitle = "NC News by Sara L"
+  const [currentUser, setCurrentUser] = useState(null)
+  //maybe use later if I figure out login
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='App'>
+
+    <Navbar currentUser={currentUser}/>
+    <Header name={pageTitle} />
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/articles" element={<ArticleList/>}/>
+      <Route path="/topics" element={<TopicList/>}/>
+      <Route path="/users" element={<UserList/>}/>
+    </Routes>
+
+
+
+    </div>
   )
 }
 
-export default App
+export default App;
