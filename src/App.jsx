@@ -11,7 +11,7 @@ import TopicList from "../src/components/TopicList.jsx";
 
 function App() {
   const pageTitle = "NC News by Sara L"
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState("jessjelly")
   //maybe use later if I figure out login
 
   return (
@@ -22,7 +22,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/articles" element={<ArticleList/>}/>
-      <Route path="/articles/:article_id" element={<SingleArticle/>} />
+      <Route path="/articles/:article_id" element={<SingleArticle currentUser={currentUser}/>} />
       <Route path="/topics" element={<TopicList/>}/>
       <Route path="/users" element={<UserList/>}/>
 
