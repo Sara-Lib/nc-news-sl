@@ -129,6 +129,22 @@ ul {
   border-radius: 4px;
 }
 
+.comment-time {
+  float: left;
+  font-size: 0.9em;
+  color: #777;
+}
+.comment-votes {
+  float: right;
+  font-size: 0.9em;
+  color: #777;
+}
+.comment-body {
+  text-align: justify;
+  padding: 2rem;
+  position: relative;
+}
+
 .author-name {
   text-align: left;
   font-weight: 600;

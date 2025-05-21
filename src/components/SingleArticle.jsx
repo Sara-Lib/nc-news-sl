@@ -48,7 +48,9 @@ function SingleArticle({ article, isListed}) {
         {comments.map(comment => (
             <li key={comment.comment_id}className="comment-card">
                 <span className="author-name"> {comment.author}</span>
-                <span> {comment.body} </span>
+                <span className="comment-votes"> Votes: {comment.votes} </span>
+                <span className="comment-time"> {new Date(comment.created_at).toLocaleString()} </span>
+                <span className="comment-body"> {comment.body} </span>
 
             </li>
         ))}
