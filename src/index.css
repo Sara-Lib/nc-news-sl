@@ -35,6 +35,10 @@ h1 {
   line-height: 1.1;
 }
 
+h2.listed-article-title {
+  font-size: 1.2em;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -86,6 +90,7 @@ ul {
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid transparent;
+  background-color: #eff5f8;
 }
 .article-card-list-item span {
   display: block;
@@ -109,4 +114,48 @@ ul {
   display: flex;
   gap: 1rem;
   list-style: none;;
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.comment-card {
+  background-color: #f9f9f9;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.comment-time {
+  float: left;
+  font-size: 0.9em;
+  color: #777;
+}
+.comment-votes {
+  float: right;
+  font-size: 0.9em;
+  color: #777;
+}
+.comment-body {
+  text-align: justify;
+  padding: 2rem;
+  position: relative;
+}
+
+.author-name {
+  text-align: left;
+  font-weight: 600;
+}
+
+.topic-name {
+  background-color: #d9deeb;
+  color: #3b3192;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  font-weight: 500;
 }

@@ -20,7 +20,7 @@ function ArticleList({ category }) {
             <ul className="article-card-list">
                     {articleList.map((article) => (
                      <SingleArticle key={article.article_id} 
-                    article={article}
+                    article={article} isListed
                     />
                     ))}
             </ul>)

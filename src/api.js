@@ -8,13 +8,18 @@ export const fetchArticles = (params) => {
     return ncNewsAPI.get(`/articles`, { params })
       .then((res) => res.data)
       .catch((err) => {
-        throw err;
-      });
-  };
-
-export const fetchArticleById = (id) => {
-    return ncNewsAPI.get(`/articles/${id}`).then((res) => res.data);
-  };
+          throw err;
+        });
+    };
+    
+    export const fetchArticleById = (id) => {
+        return ncNewsAPI.get(`/articles/${id}`).then((res) => res.data);
+    };
+    
+    export const fetchCommentsByArticleId = (article_id) => {
+        return ncNewsAPI.get(`/articles/${article_id}/comments`)
+        .then((res) => res.data)
+}
   
 
 // export const postItems = (item) => {
