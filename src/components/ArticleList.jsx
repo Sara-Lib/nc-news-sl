@@ -24,7 +24,7 @@ function ArticleList({ category }) {
                     />
                     ))}
             </ul>)
-            : <h3> No articles found under this topic.</h3>
+            : <h3> Loading articles.. </h3>
             }
         </div>
     );

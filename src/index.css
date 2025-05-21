@@ -139,6 +139,12 @@ ul {
   font-size: 0.9em;
   color: #777;
 }
+
+.comment-votes button {
+  font-size: 0.8rem;
+  padding: 2px 6px;
+}
+
 .comment-body {
   text-align: justify;
   padding: 2rem;
