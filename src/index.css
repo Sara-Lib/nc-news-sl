@@ -81,6 +81,7 @@ ul {
 }
 
 .article-card-list-item {
+  list-style: none;
   margin: 0.5rem 1rem;
   padding: 1rem;
   border-radius: 8px;
@@ -91,8 +92,8 @@ ul {
 }
 
 .article-card-list-item img{
-  max-width: 70%;
-  border-radius: 4rem;
+  max-width: 80%;
+  border-radius: 2rem;
   border: 1rem solid transparent;
 }
 

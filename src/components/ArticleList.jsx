@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import SingleArticle from './SingleArticle.jsx';
 import { fetchArticles } from "../api.js";
 
+
 function ArticleList({ category }) {
 
     const [articleList, setArticleList] = useState([])
@@ -18,10 +19,12 @@ function ArticleList({ category }) {
             {articleList.length ? (
             <ul className="article-card-list">
                     {articleList.map((article) => (
-                    <SingleArticle key={article.article_id} article={article} />
+                     <SingleArticle key={article.article_id} 
+                    article={article}
+                    />
                     ))}
             </ul>)
-            : <h3> No articles found in selected category.</h3>
+            : <h3> No articles found under this topic.</h3>
             }
         </div>
     );
