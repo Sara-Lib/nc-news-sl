@@ -1,29 +1,41 @@
 import { useEffect, useState } from "react";
-import React from "react";
+import { useParams, Link } from "react-router-dom";
 import { fetchArticleById } from "../api.js";
 
 function SingleArticle({ article }) {
-    const [fullArticle, setFullArticle] = useState(article);
+  const { article_id } = useParams();
+  const [fullArticle, setFullArticle] = useState(article || null);
+  const [loading, setLoading] = useState(!article);
 
-    useEffect(() => {
-        fetchArticleById(article.article_id).then(({ article }) => {
+  useEffect(() => {
+    if (article_id && !article) {
+      fetchArticleById(article_id)
+        .then(({ article }) => {
           setFullArticle(article);
-        });
-      }, [article.article_id]);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }
+  }, [article_id, article]);
 
-    return (
-        
-        <li key={fullArticle.article_id} className="article-card-list-item">
-            <h3>{fullArticle.title} </h3>
-            <span> By: {fullArticle.author} </span>
-            <span> Topic: {fullArticle.topic} </span>
-            <img src={fullArticle.article_img_url} alt={fullArticle.title}/> 
-            <span className="article-body">{fullArticle.body}</span>
-        </li>
+  if (loading) return <p>Loading...</p>;
+  if (!fullArticle) return <p>Article not found.</p>;
 
-    )
-
-    
-};
+  return (
+    <li className="article-card-list-item">
+      <h3>
+        {article ? (
+          <Link to={`/articles/${fullArticle.article_id}`}>{fullArticle.title}</Link>
+        ) : (
+          fullArticle.title
+        )}
+      </h3>
+      <span> By: {fullArticle.author} </span>
+      <span> Topic: {fullArticle.topic} </span>
+      <img src={fullArticle.article_img_url} alt={fullArticle.title} />
+      <span className="article-body">{fullArticle.body}</span>
+    </li>
+  );
+}
 
 export default SingleArticle;
