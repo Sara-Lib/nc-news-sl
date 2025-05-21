@@ -20,6 +20,11 @@ export const fetchArticles = (params) => {
         return ncNewsAPI.get(`/articles/${article_id}/comments`)
         .then((res) => res.data)
 }
+
+    export const patchArticleVotes = (article_id, votes) => {
+        return ncNewsAPI.patch(`/articles/${article_id}`, { inc_votes: votes })
+        .then((res) => res.data)
+    }
   
 
 // export const postItems = (item) => {
