@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchArticleById, fetchCommentsByArticleId, patchArticleVotes } from "../api.js";
+import CommentList from "./CommentList.jsx";
 
-function SingleArticle({ article, isListed}) {
+function SingleArticle({ article, isListed, currentUser}) {
   const { article_id } = useParams();
   const [fullArticle, setFullArticle] = useState(article || null);
   const [loading, setLoading] = useState(!article);
-  const [comments, setComments] = useState([])
   const [votes, setVotes] = useState(null)
 
   useEffect(() => {
@@ -19,13 +19,6 @@ function SingleArticle({ article, isListed}) {
         .catch(() => setLoading(false));
     }
   }, [article_id, article]);
-
-  useEffect(() => {
-    if (article_id && !article) {
-    fetchCommentsByArticleId(article_id)
-    .then(({ comments }) => setComments(comments))
-    }
-  }, [article_id])
 
   useEffect(() => {
     if (fullArticle) {
@@ -67,18 +60,7 @@ function SingleArticle({ article, isListed}) {
       </span>
       <span className="article-body">{fullArticle.body}</span>
 
-    <ul className="comment-list">
-        {comments.map(comment => (
-            <li key={comment.comment_id}className="comment-card">
-                <span className="author-name"> {comment.author}</span>
-                <span className="comment-votes"> Votes: {comment.votes} </span>
-                <span className="comment-time"> {new Date(comment.created_at).toLocaleString()} </span>
-                <span className="comment-body"> {comment.body} </span>
-
-            </li>
-        ))}
-
-    </ul>
+      {!isListed && <CommentList article_id={fullArticle.article_id} currentUser={currentUser} />}
     </li>
   );
 }

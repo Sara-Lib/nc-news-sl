@@ -165,3 +165,17 @@ ul {
   margin: 0.5rem 0;
   font-weight: 500;
 }
+
+.post-comment-input {
+  width: 80%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.post-comment button {
+  float:right
+}
+
+.error-text {
+  color:red;
+}
