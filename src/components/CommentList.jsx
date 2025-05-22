@@ -66,7 +66,9 @@ function CommentList({ article_id , currentUser}) {
             {new Date(comment.created_at).toLocaleString()}
           </span>
           <span className="comment-body">{comment.body}</span>
-          <button onClick={() => handleDelete(comment.comment_id, comment.author)}>Delete</button>
+          {currentUser === comment.author && (
+            <button onClick={() => handleDelete(comment.comment_id, comment.author)}>Delete</button>
+            )}
         </li>
       ))}
     </ul>
