@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import './App.css'
 import Header from "../src/components/Header.jsx";
 import Home from "../src/components/Home.jsx";
@@ -12,7 +12,6 @@ import TopicList from "../src/components/TopicList.jsx";
 function App() {
   const pageTitle = "NC News by Sara L"
   const [currentUser, setCurrentUser] = useState("jessjelly")
-  //maybe use later if I figure out login
 
   return (
     <div className='App'>
@@ -21,7 +20,7 @@ function App() {
     <Header name={pageTitle} />
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/articles" element={<ArticleList/>}/>
+      <Route path="/articles" element={<ArticleList />}/>
       <Route path="/articles/:article_id" element={<SingleArticle currentUser={currentUser}/>} />
       <Route path="/topics" element={<TopicList/>}/>
       <Route path="/users" element={<UserList/>}/>

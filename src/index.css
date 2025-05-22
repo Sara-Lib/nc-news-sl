@@ -120,6 +120,26 @@ ul {
   list-style: none;;
 }
 
+.topic-bar {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  align-items: center;
+}
+.topic-bar li {
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.topic-bar li:hover {
+  background-color: #e2e6ea;
+}
+
+
 .post-comment {
   max-width: 672px;
   width: 100%;
@@ -148,13 +168,11 @@ ul {
 
 .post-comment button {
   align-self: flex-end;
-  padding: 0.375rem 0.625rem;
   border-radius: 0.375rem;
-  background-color: #6366f1;
+  background-color: #797bbf;
   color: white;
   font-size: 0.875rem;
   border: none;
-  cursor: pointer;
 }
 
 
@@ -169,15 +187,28 @@ ul {
   padding: 0.5rem 1rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comment-card button {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-top: 0.25rem;
+  border-radius: 0.375rem;
+  background-color: #6466aa;
+  color: white;
+  font-size: 0.875rem;
+  border: none;
+  float:auto;
 }
 
 .comment-time {
-  float: left;
   font-size: 0.9em;
   color: #777;
 }
 .comment-votes {
-  float: right;
   font-size: 0.9em;
   color: #777;
 }
@@ -189,8 +220,8 @@ ul {
 
 .comment-body {
   text-align: justify;
-  padding: 2rem;
   position: relative;
+  margin-bottom: 0.25rem;
 }
 
 .author-name {

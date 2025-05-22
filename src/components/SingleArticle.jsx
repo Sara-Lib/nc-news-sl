@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchArticleById, fetchCommentsByArticleId, patchArticleVotes } from "../api.js";
+import { fetchArticleById, patchArticleVotes } from "../api.js";
 import CommentList from "./CommentList.jsx";
 
 function SingleArticle({ article, isListed, currentUser}) {
