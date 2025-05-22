@@ -30,6 +30,12 @@ export const fetchArticles = (params) => {
         return ncNewsAPI.post(`/articles/${article_id}/comments`, {username, body})
         .then((res) => res.data)
     }
+    
+    export const deleteComment = (comment_id, username) => {
+        return ncNewsAPI.delete(`/comments/${comment_id}`, {data: {username}})
+        //delete works differently in axios, post automatically treats the second argument as request body but delete doesnt
+        .then((res) => res.data)
+    }
   
 
 // export const postItems = (item) => {
