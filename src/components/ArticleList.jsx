@@ -2,9 +2,10 @@ import {use, useEffect, useState} from "react";
 import SingleArticle from './SingleArticle.jsx';
 import { fetchArticles } from "../api.js";
 import { useLocation } from "react-router-dom";
+import SortBar from "./SortBar.jsx";
 
 
-function ArticleList({ topic }) {
+function ArticleList({showSortBar, topic}) {
 
     const [articleList, setArticleList] = useState([])
     const location = useLocation();
@@ -16,7 +17,15 @@ function ArticleList({ topic }) {
         //NEW!! potentially good and cleaner way to do this than props?
         //check with mentors if this is the best way and if everything is necessary
         const topic = params.get('topic');
-        fetchArticles(topic ? { topic } : {})
+        const sort_by = params.get('sort_by');
+        const order = params.get('order');
+
+        const query = {};
+        if (topic) query.topic = topic;
+        query.sort_by = sort_by;
+        query.order = order;
+
+        fetchArticles(query)
           .then(({ articles }) => {
               setArticleList(articles)
               console.log(topic)
@@ -28,6 +37,7 @@ function ArticleList({ topic }) {
 
     return (
         <div>
+            {<SortBar visible={showSortBar} />}
             {articleList.length ? (
             <ul className="article-card-list">
                     {articleList.map((article) => (

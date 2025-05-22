@@ -20,7 +20,7 @@ function App() {
     <Header name={pageTitle} />
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/articles" element={<ArticleList />}/>
+      <Route path="/articles" element={<ArticleList showSortBar={true} />}/>
       <Route path="/articles/:article_id" element={<SingleArticle currentUser={currentUser}/>} />
       <Route path="/topics" element={<TopicList/>}/>
       <Route path="/users" element={<UserList/>}/>
