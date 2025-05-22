@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchCommentsByArticleId, postNewComment } from "../api.js";
+import { deleteComment, fetchCommentsByArticleId, postNewComment } from "../api.js";
 
 function CommentList({ article_id , currentUser}) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [posting, setPosting] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,7 +14,6 @@ function CommentList({ article_id , currentUser}) {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    setPosting(true);
     if (!newComment.trim()) {
         setError("Write your comment before submitting.");
         return;
@@ -23,24 +21,40 @@ function CommentList({ article_id , currentUser}) {
     postNewComment(article_id, currentUser, newComment)
     .then(() => fetchCommentsByArticleId(article_id))
     .then(({ comments }) => {
-      setComments(comments);
-      setNewComment("");
-      setPosting(false);
+        setComments(comments);
+        setNewComment("");
     })
     .catch((err) => {
         setError("Error posting a comment. Please try again.")
         console.log(err);
-        setPosting(false);
     })
-  }
+}
+
+    const handleDelete = (comment_id, author) => {
+        if (currentUser !== author) {
+            console.log(currentUser, author, comment_id)
+            setError("You can only delete your own comments.");
+            return;
+          }
+        deleteComment(comment_id, currentUser)
+        .then(() => fetchCommentsByArticleId(article_id))
+        .then(({ comments }) => {
+            setComments(comments);
+        })
+        .catch((err) => {
+                setError("Error deleting a comment. Please try again.")
+                console.log(comment_id, currentUser, "<<<<<")
+                console.log(err);
+            })
+    }
 
   return (
     <>
-   <form id="post-comment" onSubmit={handleCommentSubmit}>
-    <input type="text" className="post-comment-input"
+   <form id="post-comment" className="post-comment" onSubmit={handleCommentSubmit}>
+    <input className="post-comment" type="text"
         value={newComment} onChange={(e) => setNewComment(e.target.value)}
     />
-    <button type="submit">Submit</button>
+    <button type="submit">Post a comment</button>
     <span className="error-text">{error}</span>
    </form>
    <ul className="comment-list">
@@ -52,6 +66,7 @@ function CommentList({ article_id , currentUser}) {
             {new Date(comment.created_at).toLocaleString()}
           </span>
           <span className="comment-body">{comment.body}</span>
+          <button onClick={() => handleDelete(comment.comment_id, comment.author)}>Delete</button>
         </li>
       ))}
     </ul>
